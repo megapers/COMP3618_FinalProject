@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SearchToolbox.Classes\SearchToolbox.Classes.csproj" />
+    <ProjectReference Include="..\SearchToolbox.DAL\SearchToolbox.DAL.csproj" />
+    <ProjectReference Include="..\SearchToolbox.Interfaces\SearchToolbox.Interfaces.csproj" />
+  </ItemGroup>
+
+</Project>
