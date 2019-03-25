@@ -13,7 +13,7 @@ namespace SearchToolbox.Interfaces
         #region Movie CRUD
         bool AddMovie(Movie movie);
         Movie ReadMovie(string code);
-        bool UpdateMovie(Movie movie);
+        bool UpdateMovie(string code, Movie movie);
         bool DeleteMovie(string code);
         #endregion
 

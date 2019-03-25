@@ -70,9 +70,9 @@ namespace SearchToolbox.DAL
                         .Count() > 0);
         }
 
-        public bool UpdateMovie(Movie movie)
+        public bool UpdateMovie(string code, Movie movie)
         {
-            string searchCode = movie.Code.Trim().ToUpper();
+            string searchCode = code.Trim().ToUpper();
             bool result = false;
 
             Title editTitle = _context.Titles
@@ -81,6 +81,7 @@ namespace SearchToolbox.DAL
 
             if (editTitle != null)
             {
+                movie.Code = code;
                 _context.Entry(editTitle).CurrentValues.SetValues(ConvertMovieToTitle(movie));
 
                 result = (_context.SaveChanges() > 0);

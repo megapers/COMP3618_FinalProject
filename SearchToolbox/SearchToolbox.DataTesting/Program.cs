@@ -101,13 +101,13 @@ namespace SearchToolbox.DataTesting
                 originalTitle = movie.OriginalTitle;
 
                 movie.OriginalTitle = @"Test Update";
-                Console.WriteLine($"Update Success: {_businessLogicLayer.UpdateMovie(movie).ToString()}.");
+                Console.WriteLine($"Update Success: {_businessLogicLayer.UpdateMovie(code, movie).ToString()}.");
 
                 movie = _businessLogicLayer.ReadMovie(code);
                 Console.WriteLine($"New Title: {movie.OriginalTitle}.");
 
                 movie.OriginalTitle = originalTitle;
-                Console.WriteLine($"Update Success: {_businessLogicLayer.UpdateMovie(movie).ToString()}.");
+                Console.WriteLine($"Update Success: {_businessLogicLayer.UpdateMovie(code, movie).ToString()}.");
 
                 movie = _businessLogicLayer.ReadMovie(code);
                 Console.WriteLine($"Title set back to: {movie.OriginalTitle}.");

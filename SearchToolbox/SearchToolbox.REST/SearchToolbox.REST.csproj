@@ -23,5 +23,6 @@
     <ProjectReference Include="..\SearchToolbox.BLL\SearchToolbox.BLL.csproj" />
     <ProjectReference Include="..\SearchToolbox.DAL\SearchToolbox.DAL.csproj" />
     <ProjectReference Include="..\SearchToolbox.Interfaces\SearchToolbox.Interfaces.csproj" />
+    <ProjectReference Include="..\SearchToolbox.REST.Classes\SearchToolbox.REST.Classes.csproj" />
   </ItemGroup>
 </Project>

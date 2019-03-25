@@ -52,16 +52,16 @@ namespace SearchToolbox.BLL
             return _dataAccessLayer.ReadMovie(code);
         }
 
-        public bool UpdateMovie(Movie movie)
+        public bool UpdateMovie(string code, Movie movie)
         {
             ValidateMovie(movie);
 
-            if (!_dataAccessLayer.MovieExists(movie.Code))
+            if (!_dataAccessLayer.MovieExists(code))
             {
-                throw new ArgumentException($"A movie with the code '{movie.Code}' does not exits.");
+                throw new ArgumentException($"A movie with the code '{code}' does not exits.");
             }
 
-            return _dataAccessLayer.UpdateMovie(movie);
+            return _dataAccessLayer.UpdateMovie(code, movie);
         }
 
         public bool DeleteMovie(string code)
