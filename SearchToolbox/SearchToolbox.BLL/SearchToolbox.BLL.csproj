@@ -6,8 +6,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SearchToolbox.Classes\SearchToolbox.Classes.csproj" />
-    <ProjectReference Include="..\SearchToolbox.DAL\SearchToolbox.DAL.csproj" />
     <ProjectReference Include="..\SearchToolbox.Interfaces\SearchToolbox.Interfaces.csproj" />
+    <ProjectReference Include="..\SearchTooolbox.EF\SearchTooolbox.EF.csproj" />
   </ItemGroup>
 
 </Project>

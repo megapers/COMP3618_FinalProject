@@ -1,71 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3DEB572A-7554-4650-B71D-C39E28624AEB}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>SearchToolbox.DataTesting</RootNamespace>
-    <AssemblyName>SearchToolbox.DataTesting</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Deterministic>true</Deterministic>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
+    <ProjectReference Include="..\SearchToolbox.BLL\SearchToolbox.BLL.csproj" />
+    <ProjectReference Include="..\SearchToolbox.Classes\SearchToolbox.Classes.csproj" />
+    <ProjectReference Include="..\SearchToolbox.DAL\SearchToolbox.DAL.csproj" />
+    <ProjectReference Include="..\SearchToolbox.Interfaces\SearchToolbox.Interfaces.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SearchToolbox.BLL\SearchToolbox.BLL.csproj">
-      <Project>{73ac477d-6046-4422-be4e-d862ef0968f7}</Project>
-      <Name>SearchToolbox.BLL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SearchToolbox.Classes\SearchToolbox.Classes.csproj">
-      <Project>{50e97018-fd16-4525-b66d-7f7b8fc3f020}</Project>
-      <Name>SearchToolbox.Classes</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SearchToolbox.DAL\SearchToolbox.DAL.csproj">
-      <Project>{8a3c2fa5-b4a1-4eb5-a581-5be428560a55}</Project>
-      <Name>SearchToolbox.DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SearchToolbox.Interfaces\SearchToolbox.Interfaces.csproj">
-      <Project>{bd307b71-a846-48cd-a05f-5c067e3df18d}</Project>
-      <Name>SearchToolbox.Interfaces</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>
