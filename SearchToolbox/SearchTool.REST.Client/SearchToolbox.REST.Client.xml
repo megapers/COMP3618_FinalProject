@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SearchToolbox.REST.Client</name>
+    </assembly>
+    <members>
+        <member name="T:SearchToolbox.REST.Client.RESTClient">
+            <summary>
+            RESTClient class
+            </summary>
+        </member>
+        <member name="M:SearchToolbox.REST.Client.RESTClient.#ctor(System.Uri)">
+            <summary>
+            Overloaded constructor
+            </summary>
+        </member>
+        <member name="M:SearchToolbox.REST.Client.RESTClient.#ctor(System.Net.Http.HttpClient,System.Uri)">
+            <summary>
+            Overloaded  constructor
+            </summary>
+            <param name="client">http client to use for access the REST service</param>
+        </member>
+        <member name="P:SearchToolbox.REST.Client.RESTClient.Endpoint">
+            <summary>
+            Enpoint URL to which to connect
+            </summary>
+        </member>
+        <member name="M:SearchToolbox.REST.Client.RESTClient.GetSearchMatches(System.String)">
+            <summary>
+            Gets the number of movies that meet the search criteria
+            </summary>
+            <param name="searchFor">Code part to search for</param>
+            <returns>Count of the number of movies that meet the search criteria</returns>
+        </member>
+        <member name="M:SearchToolbox.REST.Client.RESTClient.ReadMatchingMovies(System.String,System.String,System.Int32)">
+            <summary>
+            Gets the number of movies that meet the search criteria
+            </summary>
+            <param name="searchFor">Code part to serach for</param>
+            <param name="codeGreaterThan">Last movie code of the previous search block</param>
+            <param name="blockSize">Number of results to return in the result block</param>
+            <returns>A block of movies that meet the search criteria</returns>
+        </member>
+    </members>
+</doc>

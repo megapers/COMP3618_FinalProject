@@ -1,22 +1,13 @@
-using System.Data.Entity;
-using System.Data.Entity.SqlServer;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace SearchTooolbox.EF
 {
-    public partial class IMDB : DbContext
+    public class IMDB : DbContext
     {
-        public IMDB() : base(@"Server=(local);Database=IMDB;Trusted_Connection=True;MultipleActiveResultSets=True;")
-        { }
-
-        public virtual DbSet<Title> Titles { get; set; }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            SqlProviderServices instance = SqlProviderServices.Instance;
-
-            modelBuilder.Entity<Title>()
-                .Property(e => e.Code)
-                .IsUnicode(false);
+            optionsBuilder.UseSqlServer(@"Server=(local);Database=IMDB;Trusted_Connection=True;MultipleActiveResultSets=True;");
         }
+        public virtual DbSet<Title> Titles { get; set; }
     }
 }

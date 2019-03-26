@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SearchToolbox.DAL</name>
+    </assembly>
+    <members>
+        <member name="T:SearchToolbox.DAL.Utilities">
+            <summary>
+            Class for the data access layer
+            </summary>
+        </member>
+        <member name="M:SearchToolbox.DAL.Utilities.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:SearchToolbox.DAL.Utilities.GetMovieMatches(System.String)">
+            <summary>
+            Gets the number of movies that meet the search criteria
+            </summary>
+            <param name="searchFor">Code part to search for</param>
+            <returns>Count of the number of movies that meet the search criteria</returns>
+        </member>
+        <member name="M:SearchToolbox.DAL.Utilities.ReadMatchingMovies(System.String,System.String,System.Int32)">
+            <summary>
+            Gets the next block of movies meeting the search criteria
+            </summary>
+            <param name="searchFor">Code part to search for</param>
+            <param name="codeGreaterThan">Last movie code of the previous search block</param>
+            <param name="blockSize">Number of results to return in the result block</param>
+            <returns>List of movies neeting the search criteria of the 'Movie'</returns>
+        </member>
+        <member name="M:SearchToolbox.DAL.Utilities.AddMovie(SearchToolbox.Classes.Movie)">
+            <summary>
+            Adds a new movie
+            </summary>
+            <param name="movie">Object of type "Movie"</param>
+            <returns>Flag indicating success / failure</returns>
+        </member>
+        <member name="M:SearchToolbox.DAL.Utilities.ReadMovie(System.String)">
+            <summary>
+            Read the movie information
+            </summary>
+            <param name="code">Movie code to query</param>
+            <returns>Movie information for the specified movie code</returns>
+        </member>
+        <member name="M:SearchToolbox.DAL.Utilities.MovieExists(System.String)">
+            <summary>
+            Checks to see if a movie with the specified code already exists
+            </summary>
+            <param name="code">Movie code to query</param>
+            <returns>Flag indicating whether or not a movie with the specified code exists</returns>
+        </member>
+        <member name="M:SearchToolbox.DAL.Utilities.UpdateMovie(System.String,SearchToolbox.Classes.Movie)">
+            <summary>
+            Updates a movie
+            </summary>
+            <param name="code">Movie code to update</param>
+            <param name="movie">Object of type "Movie"</param>
+            <returns>Flag indicating success / failure</returns>
+        </member>
+        <member name="M:SearchToolbox.DAL.Utilities.DeleteMovie(System.String)">
+            <summary>
+            Deletes a movie
+            </summary>
+            <param name="code">Movie code to delete</param>
+            <returns>Flag indicating success / failure</returns>
+        </member>
+    </members>
+</doc>
