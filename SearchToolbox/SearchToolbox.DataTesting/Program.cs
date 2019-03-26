@@ -12,7 +12,7 @@ namespace SearchToolbox.DataTesting
         {
             _businessLogicLayer = new BLL.Utilities(new DAL.Utilities());
 
-            //Test serach methods
+            //Test search methods
             Console.WriteLine(@"Testing movie search methods.");
             Console.WriteLine(@"--------------------------------------------");
             Console.WriteLine();
@@ -55,6 +55,7 @@ namespace SearchToolbox.DataTesting
             Console.WriteLine();
 
             //Wait for user to end console
+            Console.WriteLine("Test successful.  Press any key to exit.");
             Console.ReadLine();
         }
 

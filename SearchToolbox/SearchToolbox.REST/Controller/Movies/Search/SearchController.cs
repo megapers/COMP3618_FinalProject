@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using SearchToolbox.Interfaces;
 using SearchToolbox.REST.Classes;
 using System;
@@ -6,16 +7,16 @@ using System;
 namespace SearchToolbox.REST.Controller.Movies.CRUD
 {
     /// <summary>
-    /// Controller for querying gauges
+    /// Controller for searching movies
     /// </summary>
     [Produces("application/json")]
     [Route("api/Movies/Search")]
     public class SearchController : ControllerBase
     {
-        private IBusinessLogicLayer _businessLogicLayer;
+        private readonly IBusinessLogicLayer _businessLogicLayer;
 
         /// <summary>
-        /// Constructor for the ClientsController
+        /// Constructor for the SearchController
         /// </summary>
         /// <param name="businessLogicLayer">Class implementing the IBusinessLogicLayer interface</param>
         public SearchController(IBusinessLogicLayer businessLogicLayer)
@@ -24,14 +25,13 @@ namespace SearchToolbox.REST.Controller.Movies.CRUD
         }
 
         /// <summary>
-        /// Read the movie information
+        /// Gets the number of movies that meet the search criteria
         /// </summary>
-        /// <param name="code">Movie code to query</param>
-        /// <returns>Movie information for the specified movie code</returns>
-        [HttpGet(Name = "GetSearchMatches")]
-        public IActionResult GetSearchMatches([FromBody] string searchFor)
+        /// <param name="searchFor">Code part to search for</param>
+        /// <returns>Count of the number of movies that meet the search criteria</returns>
+        [HttpGet("{searchFor}", Name = "GetSearchMatches")]
+        public IActionResult GetSearchMatches(string searchFor)
         {
-
             try
             {
                 return Ok(_businessLogicLayer.GetSearchMatches(searchFor));
@@ -43,14 +43,12 @@ namespace SearchToolbox.REST.Controller.Movies.CRUD
         }
 
         /// <summary>
-        /// Read the movie information
+        /// Gets the next block of movies meeting the search criteria
         /// </summary>
-        /// <param name="code">Movie code to query</param>
-        /// <returns>Movie information for the specified movie code</returns>
-        [HttpGet(Name = "GetMatchingMovies")]
+        /// <returns>A block of movies that meet the search criteria</returns>
+        [HttpPost(Name = "GetMatchingMovies")]
         public IActionResult GetMatchingMovies([FromBody] SearchCriteria searchCriteria)
         {
-
             try
             {
                 return Ok(_businessLogicLayer.ReadMatchingMovies(searchCriteria.SearchFor, searchCriteria.CodeGreaterThan, searchCriteria.BlockSize));
@@ -60,6 +58,5 @@ namespace SearchToolbox.REST.Controller.Movies.CRUD
                 return BadRequest(ex.Message);
             }
         }
-
     }
 }

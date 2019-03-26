@@ -37,8 +37,8 @@ namespace SearchToolbox.REST
             AppSettings appSettings = Configuration.GetSection("Configuration").Get<AppSettings>();
             services.AddSingleton(appSettings);
 
-            services.AddSingleton(typeof(IDataAccessLayer), new DAL.Utilities());
-            services.AddSingleton(typeof(IBusinessLogicLayer));
+            services.AddSingleton<IDataAccessLayer, DAL.Utilities>();
+            services.AddSingleton<IBusinessLogicLayer, BLL.Utilities>();
 
             #region Swagger
             services.AddSwaggerGen(swaggerOptions =>

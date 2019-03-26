@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SearchTooolbox.EF
 {
-    [Table("movie.Titles")]
+    [Table("Titles")]
     public partial class Title
     {
         [Key]

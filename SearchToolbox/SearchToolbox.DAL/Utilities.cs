@@ -6,11 +6,17 @@ using System.Linq;
 
 namespace SearchToolbox.DAL
 {
+    /// <summary>
+    /// Class for the data access layer
+    /// </summary>
     public class Utilities : IDataAccessLayer
     {
         private readonly IMDB _context;
 
         #region Constructor
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public Utilities()
         {
             _context = new IMDB();
@@ -18,6 +24,11 @@ namespace SearchToolbox.DAL
         #endregion
 
         #region Movie Search
+        /// <summary>
+        /// Gets the number of movies that meet the search criteria
+        /// </summary>
+        /// <param name="searchFor">Code part to search for</param>
+        /// <returns>Count of the number of movies that meet the search criteria</returns>
         public int GetMovieMatches(string searchFor)
         {
             string searchCode = searchFor.ToUpper();
@@ -27,6 +38,13 @@ namespace SearchToolbox.DAL
                         .Count());
         }
 
+        /// <summary>
+        /// Gets the next block of movies meeting the search criteria
+        /// </summary>
+        /// <param name="searchFor">Code part to search for</param>
+        /// <param name="codeGreaterThan">Last movie code of the previous search block</param>
+        /// <param name="blockSize">Number of results to return in the result block</param>
+        /// <returns>List of movies neeting the search criteria of the 'Movie'</returns>
         public List<Movie> ReadMatchingMovies(string searchFor, string codeGreaterThan, int blockSize)
         {
             string searchCode = searchFor.ToUpper();
@@ -52,6 +70,22 @@ namespace SearchToolbox.DAL
         #endregion
 
         #region Movie CRUD
+        /// <summary>
+        /// Adds a new movie
+        /// </summary>
+        /// <param name="movie">Object of type "Movie"</param>
+        /// <returns>Flag indicating success / failure</returns>
+        public bool AddMovie(Movie movie)
+        {
+            _context.Titles.Add(ConvertMovieToTitle(movie));
+            return (_context.SaveChanges() > 0);
+        }
+
+        /// <summary>
+        /// Read the movie information
+        /// </summary>
+        /// <param name="code">Movie code to query</param>
+        /// <returns>Movie information for the specified movie code</returns>
         public Movie ReadMovie(string code)
         {
             string searchCode = code.ToUpper();
@@ -61,6 +95,11 @@ namespace SearchToolbox.DAL
                         .FirstOrDefault());
         }
 
+        /// <summary>
+        /// Checks to see if a movie with the specified code already exists
+        /// </summary>
+        /// <param name="code">Movie code to query</param>
+        /// <returns>Flag indicating whether or not a movie with the specified code exists</returns>
         public bool MovieExists(string code)
         {
             string searchCode = code.ToUpper();
@@ -70,6 +109,12 @@ namespace SearchToolbox.DAL
                         .Count() > 0);
         }
 
+        /// <summary>
+        /// Updates a movie
+        /// </summary>
+        /// <param name="code">Movie code to update</param>
+        /// <param name="movie">Object of type "Movie"</param>
+        /// <returns>Flag indicating success / failure</returns>
         public bool UpdateMovie(string code, Movie movie)
         {
             string searchCode = code.Trim().ToUpper();
@@ -90,12 +135,11 @@ namespace SearchToolbox.DAL
             return result;
         }
 
-        public bool AddMovie(Movie movie)
-        {
-            _context.Titles.Add(ConvertMovieToTitle(movie));
-            return (_context.SaveChanges() > 0);
-        }
-
+        /// <summary>
+        /// Deletes a movie
+        /// </summary>
+        /// <param name="code">Movie code to delete</param>
+        /// <returns>Flag indicating success / failure</returns>
         public bool DeleteMovie(string code)
         {
             string searchCode = code.Trim().ToUpper();

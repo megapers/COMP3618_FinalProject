@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SearchToolbox.Classes</name>
+    </assembly>
+    <members>
+        <member name="T:SearchToolbox.Classes.Movie">
+            <summary>
+            Class used to hold movie information
+            </summary>
+        </member>
+        <member name="M:SearchToolbox.Classes.Movie.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:SearchToolbox.Classes.Movie.#ctor(System.String,System.String,System.String,System.String,System.Boolean,System.Nullable{System.Int16},System.Nullable{System.Int16},System.Nullable{System.Int32},System.String)">
+            <summary>
+            Override constructor
+            </summary>
+            <param name="code">Movie code</param>
+            <param name="titleType">Title type</param>
+            <param name="primaryTitle">Primary title</param>
+            <param name="originalTitle">Original title</param>
+            <param name="isAdult">Flag indicating if the movie is n adult movie or not</param>
+            <param name="startYear">Start year</param>
+            <param name="endYear">End year</param>
+            <param name="runtimeMinutes">Runtime (minutes)</param>
+            <param name="genres">Genres (comma separated list)</param>
+        </member>
+        <member name="P:SearchToolbox.Classes.Movie.Code">
+            <summary>
+            Movie code
+            </summary>
+        </member>
+        <member name="P:SearchToolbox.Classes.Movie.TitleType">
+            <summary>
+            Title type
+            </summary>
+        </member>
+        <member name="P:SearchToolbox.Classes.Movie.PrimaryTitle">
+            <summary>
+            Primary title
+            </summary>
+        </member>
+        <member name="P:SearchToolbox.Classes.Movie.OriginalTitle">
+            <summary>
+            Original title
+            </summary>
+        </member>
+        <member name="P:SearchToolbox.Classes.Movie.IsAdult">
+            <summary>
+            Flag indicating if the movie is n adult movie or not
+            </summary>
+        </member>
+        <member name="P:SearchToolbox.Classes.Movie.StartYear">
+            <summary>
+            Start year
+            </summary>
+        </member>
+        <member name="P:SearchToolbox.Classes.Movie.EndYear">
+            <summary>
+            End year
+            </summary>
+        </member>
+        <member name="P:SearchToolbox.Classes.Movie.RuntimeMinutes">
+            <summary>
+            Runtime (minutes)
+            </summary>
+        </member>
+        <member name="P:SearchToolbox.Classes.Movie.Genres">
+            <summary>
+            Genres (comma separated list)
+            </summary>
+        </member>
+        <member name="M:SearchToolbox.Classes.Movie.ToString">
+            <summary>
+            Override of the 'ToString' method
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

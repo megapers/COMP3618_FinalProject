@@ -5,8 +5,13 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\BCITSource\Comp3618\COMP3618_FinalProject\SearchToolbox\SearchToolbox.REST.Classes\SearchToolbox.REST.Classes.xml</DocumentationFile>
+    <DocumentationFile>C:\BCITSource\Comp3618\COMP3618_FinalProject\SearchToolbox\SearchTool.REST.Client\SearchToolbox.REST.Client.xml</DocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SearchToolbox.Classes\SearchToolbox.Classes.csproj" />
+    <ProjectReference Include="..\SearchToolbox.REST.Classes\SearchToolbox.REST.Classes.csproj" />
+  </ItemGroup>
 
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

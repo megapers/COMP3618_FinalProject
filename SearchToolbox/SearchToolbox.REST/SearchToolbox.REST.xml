@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SearchToolbox.REST</name>
+    </assembly>
+    <members>
+        <member name="T:SearchToolbox.REST.AppSettings">
+            <summary>
+            App settings class
+            </summary>
+        </member>
+        <member name="P:SearchToolbox.REST.AppSettings.Name">
+            <summary>
+            Name of the web api
+            </summary>
+        </member>
+        <member name="P:SearchToolbox.REST.AppSettings.DisplayName">
+            <summary>
+            Display name of the web api
+            </summary>
+        </member>
+        <member name="T:SearchToolbox.REST.Controller.Movies.CRUD.MovieController">
+            <summary>
+            Controller for performing CRID operations on movies
+            </summary>
+        </member>
+        <member name="M:SearchToolbox.REST.Controller.Movies.CRUD.MovieController.#ctor(SearchToolbox.Interfaces.IBusinessLogicLayer)">
+            <summary>
+            Constructor for the MovieController
+            </summary>
+            <param name="businessLogicLayer">Class implementing the IBusinessLogicLayer interface</param>
+        </member>
+        <member name="M:SearchToolbox.REST.Controller.Movies.CRUD.MovieController.GetMovie(System.String)">
+            <summary>
+            Read the movie information
+            </summary>
+            <param name="code">Movie code to query</param>
+            <returns>Movie information for the specified movie code</returns>
+        </member>
+        <member name="M:SearchToolbox.REST.Controller.Movies.CRUD.MovieController.AddMovie(SearchToolbox.Classes.Movie)">
+            <summary>
+            Adds a new movie
+            </summary>
+            <param name="movie">Object of type "Movie"</param>
+            <returns>Flag indicating success / failure</returns>
+        </member>
+        <member name="M:SearchToolbox.REST.Controller.Movies.CRUD.MovieController.UpdateMovie(System.String,SearchToolbox.Classes.Movie)">
+            <summary>
+            Updates a movie
+            </summary>
+            <param name="code">Movie code to update</param>
+            <param name="movie">Object of type "Movie"</param>
+            <returns>Flag indicating success / failure</returns>
+        </member>
+        <member name="M:SearchToolbox.REST.Controller.Movies.CRUD.MovieController.DeleteMovie(System.String)">
+            <summary>
+            Deletes a movie
+            </summary>
+            <param name="code">Movie code to delete</param>
+            <returns>Flag indicating success / failure</returns>
+        </member>
+        <member name="T:SearchToolbox.REST.Controller.Movies.CRUD.SearchController">
+            <summary>
+            Controller for searching movies
+            </summary>
+        </member>
+        <member name="M:SearchToolbox.REST.Controller.Movies.CRUD.SearchController.#ctor(SearchToolbox.Interfaces.IBusinessLogicLayer)">
+            <summary>
+            Constructor for the SearchController
+            </summary>
+            <param name="businessLogicLayer">Class implementing the IBusinessLogicLayer interface</param>
+        </member>
+        <member name="M:SearchToolbox.REST.Controller.Movies.CRUD.SearchController.GetSearchMatches(System.String)">
+            <summary>
+            Gets the number of movies that meet the search criteria
+            </summary>
+            <param name="searchFor">Code part to search for</param>
+            <returns>Count of the number of movies that meet the search criteria</returns>
+        </member>
+        <member name="M:SearchToolbox.REST.Controller.Movies.CRUD.SearchController.GetMatchingMovies(SearchToolbox.REST.Classes.SearchCriteria)">
+            <summary>
+            Gets the next block of movies meeting the search criteria
+            </summary>
+            <returns>A block of movies that meet the search criteria</returns>
+        </member>
+        <member name="T:SearchToolbox.REST.GenericExceptionHandler">
+            <summary>
+            Generic exception handler
+            </summary>
+        </member>
+        <member name="M:SearchToolbox.REST.GenericExceptionHandler.#ctor(Microsoft.AspNetCore.Http.RequestDelegate)">
+            <summary>
+            
+            </summary>
+            <param name="requestDelegate"></param>
+        </member>
+        <member name="M:SearchToolbox.REST.GenericExceptionHandler.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SearchToolbox.REST.GenericExceptionHandler.HandleExceptionAsync(Microsoft.AspNetCore.Http.HttpContext,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <param name="exception"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SearchToolbox.REST.Program">
+            <summary>
+            Main class for the web api
+            </summary>
+        </member>
+        <member name="M:SearchToolbox.REST.Program.Main(System.String[])">
+            <summary>
+            Main method for the web api
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:SearchToolbox.REST.Program.BuildWebHost(System.String[])">
+            <summary>
+            Method used to start and run the web api
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SearchToolbox.REST.Startup">
+            <summary>
+            Startup class for the web apu
+            </summary>
+        </member>
+        <member name="P:SearchToolbox.REST.Startup.Configuration">
+            <summary>
+            Configuration property for the web api
+            </summary>
+        </member>
+        <member name="M:SearchToolbox.REST.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Startup method for the web api
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:SearchToolbox.REST.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Configuration method for the web api. This method gets called by the runtime, and adds services to the container
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:SearchToolbox.REST.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            The configure method for the web api. This method gets called by the runtime, and is used to configure the HTTP request pipeline
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+    </members>
+</doc>

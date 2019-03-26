@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 namespace SearchToolbox.REST.Controller.Movies.CRUD
 {
     /// <summary>
-    /// Controller for querying gauges
+    /// Controller for performing CRID operations on movies
     /// </summary>
     [Produces("application/json")]
     [Route("api/Movies/CRUD")]
     public class MovieController : ControllerBase
     {
-        private IBusinessLogicLayer _businessLogicLayer;
+        private readonly IBusinessLogicLayer _businessLogicLayer;
 
         /// <summary>
-        /// Constructor for the ClientsController
+        /// Constructor for the MovieController
         /// </summary>
         /// <param name="businessLogicLayer">Class implementing the IBusinessLogicLayer interface</param>
         public MovieController(IBusinessLogicLayer businessLogicLayer)
@@ -35,7 +35,7 @@ namespace SearchToolbox.REST.Controller.Movies.CRUD
             try
             {
 
-            return Ok(_businessLogicLayer.ReadMovie(code));
+                return Ok(_businessLogicLayer.ReadMovie(code));
             }
             catch (Exception ex)
             {
@@ -44,10 +44,10 @@ namespace SearchToolbox.REST.Controller.Movies.CRUD
         }
 
         /// <summary>
-        /// Writes a new movie to the database
+        /// Adds a new movie
         /// </summary>
         /// <param name="movie">Object of type "Movie"</param>
-        /// <returns></returns>
+        /// <returns>Flag indicating success / failure</returns>
         [HttpPost(Name = "AddMovie")]
         public IActionResult AddMovie([FromBody] Movie movie)
         {
@@ -62,12 +62,12 @@ namespace SearchToolbox.REST.Controller.Movies.CRUD
         }
 
         /// <summary>
-        /// Updates a movie to the database
+        /// Updates a movie
         /// </summary>
         /// <param name="code">Movie code to update</param>
         /// <param name="movie">Object of type "Movie"</param>
-        /// <returns></returns>
-        [HttpGet("{code}", Name = "UpdateMovie")]
+        /// <returns>Flag indicating success / failure</returns>
+        [HttpPost("{code}", Name = "UpdateMovie")]
         public IActionResult UpdateMovie(string code, [FromBody] Movie movie)
         {
             try
@@ -81,10 +81,10 @@ namespace SearchToolbox.REST.Controller.Movies.CRUD
         }
 
         /// <summary>
-        /// Deletes a movie to the database
+        /// Deletes a movie
         /// </summary>
         /// <param name="code">Movie code to delete</param>
-        /// <returns></returns>
+        /// <returns>Flag indicating success / failure</returns>
         [HttpDelete("{code}", Name = "DeleteMovie")]
         public IActionResult DeleteMovie(string code)
         {
