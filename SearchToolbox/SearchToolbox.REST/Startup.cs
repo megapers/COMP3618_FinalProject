@@ -50,6 +50,19 @@ namespace SearchToolbox.REST
             });
             #endregion
 
+            #region CORS for Angular
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder => builder
+                    .WithOrigins("http://localhost:4200/")
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowAnyOrigin()
+                    .AllowCredentials());
+            });
+            #endregion
+
+
             services.AddMvc();
         }
 
@@ -74,6 +87,10 @@ namespace SearchToolbox.REST
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", $"{appSettings.DisplayName} v1");
                 c.RoutePrefix = string.Empty;
             });
+            #endregion
+
+            #region CORS for Angular
+            app.UseCors("CorsPolicy");
             #endregion
 
             app.UseMiddleware(typeof(GenericExceptionHandler));

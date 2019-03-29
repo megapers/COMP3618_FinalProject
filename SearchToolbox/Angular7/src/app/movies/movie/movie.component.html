@@ -1,0 +1,46 @@
+<form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+  <div class="form-group">
+    <label>Code</label>
+    <input name="Code" #Code="ngModel" [(ngModel)]="service.formData.Code" class="form-control" required>
+  <div class="validation-error" *ngIf="Code.invalid && Code.touched">This field is required</div>
+  </div>
+  <div class="form-group">
+    <label>Title Type</label>
+    <input name="TitleType" #TitleType="ngModel" [(ngModel)]="service.formData.TitleType" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>Primary Title</label>
+    <input name="PrimaryTitle" #PrimaryTitle="ngModel" [(ngModel)]="service.formData.PrimaryTitle" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>Original Title</label>
+    <input name="OriginalTitle" #OriginalTitle="ngModel" [(ngModel)]="service.formData.OriginalTitle" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>Is Adult</label>
+    <input name="IsAdult" type="checkbox" [(ngModel)]="service.formData.IsAdult" class="form-control">
+  </div>
+  <div class="form-row">
+
+    <div class="form-group col-md-6">
+      <label>Start Year</label>
+      <input name="StartYear" #StartYear="ngModel" [(ngModel)]="service.formData.StartYear" class="form-control" type="number">
+    </div>
+    <div class="form-group col-md-6">
+      <label>End Year</label>
+      <input name="EndYear" #EndYear="ngModel" [(ngModel)]="service.formData.EndYear" class="form-control" type="number">
+    </div>
+
+  </div>
+  <div class="form-group">
+    <label>Runtime Minutes</label>
+    <input name="RuntimeMinutes" #RuntimeMinutes="ngModel" [(ngModel)]="service.formData.RuntimeMinutes" class="form-control" type="number">
+  </div>
+  <div class="form-group">
+    <label>Genres</label>
+    <input name="Genres" #Genres="ngModel" [(ngModel)]="service.formData.Genres" class="form-control">
+  </div>
+  <div class="form-group">
+    <button type="submit" [disabled]="form.invalid" class="btn btn-lg btn-block">SUBMIT</button>
+  </div>
+</form>
