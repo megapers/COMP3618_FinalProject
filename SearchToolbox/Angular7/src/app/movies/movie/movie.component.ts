@@ -10,8 +10,9 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class MovieComponent implements OnInit {
 
-  constructor(private service: MovieService, private toastr: ToastrService) { }
+  constructor(private service: MovieService, private toastr: ToastrService) {}
 
+  public test = this.service.formData;
   ngOnInit() {
     this.resetForm();
   }
@@ -41,6 +42,22 @@ export class MovieComponent implements OnInit {
     this.service.postMovie(form.value).subscribe(res => {
       this.toastr.success('Record added successfully');
       this.resetForm(form);
+    });
+  }
+
+  getByCode(val) {
+    this.service.getMovieByCode(val).subscribe(mov => {
+      this.service.formData = {
+      Code: mov.code,
+      TitleType: mov.titleType,
+      PrimaryTitle: mov.primaryTitle,
+      OriginalTitle: mov.originalTitle,
+      IsAdult: mov.isAdult,
+      StartYear: mov.startYear,
+      EndYear: mov.endYear,
+      RuntimeMinutes: mov.runtimeMinutes,
+      Genres: mov.genres
+      };
     });
   }
 }

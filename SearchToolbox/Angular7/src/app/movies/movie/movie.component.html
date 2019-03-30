@@ -2,8 +2,9 @@
   <div class="form-group">
     <label>Code</label>
     <input name="Code" #Code="ngModel" [(ngModel)]="service.formData.Code" class="form-control" required>
-  <div class="validation-error" *ngIf="Code.invalid && Code.touched">This field is required</div>
+    <div class="validation-error" *ngIf="Code.invalid && Code.touched">This field is required</div>
   </div>
+  <button type="button" [disabled]="form.invalid" class="btn" (click)="getByCode(service.formData.Code)">Search</button>
   <div class="form-group">
     <label>Title Type</label>
     <input name="TitleType" #TitleType="ngModel" [(ngModel)]="service.formData.TitleType" class="form-control">
