@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MovieService } from 'src/app/shared/movie.service';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { Movie } from 'src/app/shared/movie.model';
 
 @Component({
   selector: 'app-movie',
@@ -9,14 +10,11 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./movie.component.css']
 })
 export class MovieComponent implements OnInit {
-
+  disableId = false;
   constructor(private service: MovieService, private toastr: ToastrService) {}
-
-  public test = this.service.formData;
   ngOnInit() {
     this.resetForm();
   }
-
   resetForm(form?: NgForm) {
     if (form != null) {
       form.resetForm();
@@ -32,21 +30,27 @@ export class MovieComponent implements OnInit {
       RuntimeMinutes: null,
       Genres: ''
     };
+    this.disableId = false;
   }
 
   onSubmit(form: NgForm) {
-    this.insertRecord(form);
+    if (this.disableId) {
+      this.updateRecord(this.service.formData.Code, form);
+    } else {
+      this.insertRecord(form);
+    }
   }
 
   insertRecord(form: NgForm) {
-    this.service.postMovie(form.value).subscribe(res => {
+    this.service.insertMovie(form.value).subscribe(res => {
       this.toastr.success('Record added successfully');
       this.resetForm(form);
-    });
+    }, error => this.toastr.error(error.error));
   }
 
+
   getByCode(val) {
-    this.service.getMovieByCode(val).subscribe(mov => {
+    this.service.getMovieByCode(val).subscribe((mov: Movie) => {
       this.service.formData = {
       Code: mov.code,
       TitleType: mov.titleType,
@@ -58,6 +62,16 @@ export class MovieComponent implements OnInit {
       RuntimeMinutes: mov.runtimeMinutes,
       Genres: mov.genres
       };
+      this.disableId = true;
     });
   }
+
+  updateRecord(code, form){
+    console.log(code, form.value);
+    this.service.updateMovie(code, form.value).subscribe(res => {
+      this.toastr.success('Record updated successfully');
+      this.resetForm(form);
+    }, error => this.toastr.error(error.error));
+  }
+
 }

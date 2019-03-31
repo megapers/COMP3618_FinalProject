@@ -3,7 +3,6 @@ import { Movie } from './movie.model';
 import { HttpClient } from '@angular/common/http';
 import { stringify } from '@angular/compiler/src/util';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -16,16 +15,20 @@ export class MovieService {
 
   constructor(private http: HttpClient) { }
 
-  postMovie(formData: Movie) {
+  insertMovie(formData: Movie) {
     return this.http.post(this.rootUrl + '/CRUD', formData);
   }
 
-  // getMovieByCode(code: string) {
-  //   return this.http.get(this.rootUrl + '/CRUD/' + code);
-  // }
+  updateMovie(code: string, formData: Movie){
+    return this.http.post(this.rootUrl + '/CRUD/' + code, formData);
+  }
+
+  errorHandler(error: any): void {
+    console.log(error);
+  }
 
   getMovieByCode(code: string) {
-    return this.http.get(this.rootUrl + '/CRUD/' + code);
+    return this.http.get<Movie>(this.rootUrl + '/CRUD/' + code);
   }
 
 }
