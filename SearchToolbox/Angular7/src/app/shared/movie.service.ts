@@ -23,12 +23,11 @@ export class MovieService {
     return this.http.post(this.rootUrl + '/CRUD/' + code, formData);
   }
 
-  errorHandler(error: any): void {
-    console.log(error);
-  }
-
   getMovieByCode(code: string) {
     return this.http.get<Movie>(this.rootUrl + '/CRUD/' + code);
   }
 
+  deleteMovie(code: string) {
+    return this.http.delete(this.rootUrl + '/CRUD/' + code);
+  }
 }

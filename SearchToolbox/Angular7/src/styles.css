@@ -11,6 +11,12 @@ button[type="submit"]{
   color: #fff;
 
 }
+
+.deleteBtn{
+  background-color: red;
+  color: #fff;
+
+}
 .jumbotron{
   background-color: #fff;
   padding-top: 32px;

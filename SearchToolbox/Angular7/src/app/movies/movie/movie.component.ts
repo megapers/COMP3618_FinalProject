@@ -48,7 +48,6 @@ export class MovieComponent implements OnInit {
     }, error => this.toastr.error(error.error));
   }
 
-
   getByCode(val) {
     this.service.getMovieByCode(val).subscribe((mov: Movie) => {
       this.service.formData = {
@@ -66,12 +65,20 @@ export class MovieComponent implements OnInit {
     });
   }
 
-  updateRecord(code, form){
-    console.log(code, form.value);
+  updateRecord(code, form) {
     this.service.updateMovie(code, form.value).subscribe(res => {
-      this.toastr.success('Record updated successfully');
+      this.toastr.info('Record updated successfully');
       this.resetForm(form);
     }, error => this.toastr.error(error.error));
   }
 
+  deleteRecord(form, code) {
+    if (confirm('Do you want to delete this record?')){
+      this.service.deleteMovie(code).subscribe(res => {
+        this.toastr.warning('Record deleted successfully');
+        this.resetForm(form);
+      }, error => this.toastr.error(error.error));
+      console.log(form.value, code);
+    }
+  }
 }
