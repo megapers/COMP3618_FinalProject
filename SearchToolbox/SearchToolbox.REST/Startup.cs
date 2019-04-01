@@ -2,9 +2,12 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.PlatformAbstractions;
 using SearchToolbox.Interfaces;
+using Serilog;
 using Swashbuckle.AspNetCore.Swagger;
+using System;
 using System.IO;
 
 namespace SearchToolbox.REST
@@ -31,17 +34,38 @@ namespace SearchToolbox.REST
         /// <summary>
         /// Configuration method for the web api. This method gets called by the runtime, and adds services to the container
         /// </summary>
-        /// <param name="services"></param>
-        public void ConfigureServices(IServiceCollection services)
+        /// <param name="serviceCollection"></param>
+        public void ConfigureServices(IServiceCollection serviceCollection)
         {
-            AppSettings appSettings = Configuration.GetSection("Configuration").Get<AppSettings>();
-            services.AddSingleton(appSettings);
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                .AddJsonFile("AppSettings.json", false, true)
+                .Build();
 
-            services.AddSingleton<IDataAccessLayer, DAL.Utilities>();
-            services.AddSingleton<IBusinessLogicLayer, BLL.Utilities>();
+            serviceCollection.AddSingleton(new LoggerFactory()
+                .AddSerilog()
+                );
+
+            serviceCollection.AddLogging();
+
+            serviceCollection.AddOptions();
+
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.Async(
+                    a => a.File(configuration["Configuration:Logging:LogFilePath"] + string.Format(configuration["Configuration:Logging:LogFileName"], DateTime.Now)),
+                    bufferSize: 10000)
+                .MinimumLevel.Debug()
+                .Enrich.FromLogContext()
+                .CreateLogger();
+
+            AppSettings appSettings = Configuration.GetSection("Configuration").Get<AppSettings>();
+            serviceCollection.AddSingleton(appSettings);
+
+            serviceCollection.AddSingleton<IDataAccessLayer, DAL.Utilities>();
+            serviceCollection.AddSingleton<IBusinessLogicLayer, BLL.Utilities>();
 
             #region Swagger
-            services.AddSwaggerGen(swaggerOptions =>
+            serviceCollection.AddSwaggerGen(swaggerOptions =>
             {
                 swaggerOptions.SwaggerDoc("v1", new Info { Title = appSettings.DisplayName, Version = "v1" });
 
@@ -50,7 +74,7 @@ namespace SearchToolbox.REST
             });
             #endregion
 
-            services.AddMvc();
+            serviceCollection.AddMvc();
         }
 
         /// <summary>

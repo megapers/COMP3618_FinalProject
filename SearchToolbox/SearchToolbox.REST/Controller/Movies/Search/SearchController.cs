@@ -4,7 +4,7 @@ using SearchToolbox.Interfaces;
 using SearchToolbox.REST.Classes;
 using System;
 
-namespace SearchToolbox.REST.Controller.Movies.CRUD
+namespace SearchToolbox.REST.Controller.Movies.Search
 {
     /// <summary>
     /// Controller for searching movies
@@ -14,14 +14,19 @@ namespace SearchToolbox.REST.Controller.Movies.CRUD
     public class SearchController : ControllerBase
     {
         private readonly IBusinessLogicLayer _businessLogicLayer;
+        private readonly ILogger<SearchController> _logger;
 
         /// <summary>
         /// Constructor for the SearchController
         /// </summary>
         /// <param name="businessLogicLayer">Class implementing the IBusinessLogicLayer interface</param>
-        public SearchController(IBusinessLogicLayer businessLogicLayer)
+        /// <param name="logger">Class implementing ILoggeer to log queries against</param>
+        public SearchController(
+            IBusinessLogicLayer businessLogicLayer,
+            ILogger<SearchController> logger)
         {
             _businessLogicLayer = businessLogicLayer;
+            _logger = logger;
         }
 
         /// <summary>
@@ -34,6 +39,9 @@ namespace SearchToolbox.REST.Controller.Movies.CRUD
         {
             try
             {
+                _logger.LogInformation($"api/Movies/Search:GetSearchMatches: " +
+                    $"Search For: {searchFor}");
+
                 return Ok(_businessLogicLayer.GetSearchMatches(searchFor));
             }
             catch (Exception ex)
@@ -51,6 +59,9 @@ namespace SearchToolbox.REST.Controller.Movies.CRUD
         {
             try
             {
+                _logger.LogInformation($"api/Movies/Search:GetSearchMatches " +
+                    $"Search Criteria: {searchCriteria.ToString()}");
+
                 return Ok(_businessLogicLayer.ReadMatchingMovies(searchCriteria.SearchFor, searchCriteria.CodeGreaterThan, searchCriteria.BlockSize));
             }
             catch (Exception ex)

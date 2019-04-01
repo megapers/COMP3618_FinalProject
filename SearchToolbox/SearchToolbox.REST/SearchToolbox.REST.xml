@@ -19,16 +19,37 @@
             Display name of the web api
             </summary>
         </member>
+        <member name="P:SearchToolbox.REST.AppSettings.Logging">
+            <summary>
+            Reference to logging information class
+            </summary>
+        </member>
+        <member name="T:SearchToolbox.REST.Logging">
+            <summary>
+            Class to contain logging information
+            </summary>
+        </member>
+        <member name="P:SearchToolbox.REST.Logging.LogFilePath">
+            <summary>
+            Path to log to
+            </summary>
+        </member>
+        <member name="P:SearchToolbox.REST.Logging.LogFileName">
+            <summary>
+            Name of log file
+            </summary>
+        </member>
         <member name="T:SearchToolbox.REST.Controller.Movies.CRUD.MovieController">
             <summary>
             Controller for performing CRID operations on movies
             </summary>
         </member>
-        <member name="M:SearchToolbox.REST.Controller.Movies.CRUD.MovieController.#ctor(SearchToolbox.Interfaces.IBusinessLogicLayer)">
+        <member name="M:SearchToolbox.REST.Controller.Movies.CRUD.MovieController.#ctor(SearchToolbox.Interfaces.IBusinessLogicLayer,Microsoft.Extensions.Logging.ILogger{SearchToolbox.REST.Controller.Movies.CRUD.MovieController})">
             <summary>
             Constructor for the MovieController
             </summary>
             <param name="businessLogicLayer">Class implementing the IBusinessLogicLayer interface</param>
+            <param name="logger">Class implementing ILoggeer to log queries against</param>
         </member>
         <member name="M:SearchToolbox.REST.Controller.Movies.CRUD.MovieController.GetMovie(System.String)">
             <summary>
@@ -59,25 +80,26 @@
             <param name="code">Movie code to delete</param>
             <returns>Flag indicating success / failure</returns>
         </member>
-        <member name="T:SearchToolbox.REST.Controller.Movies.CRUD.SearchController">
+        <member name="T:SearchToolbox.REST.Controller.Movies.Search.SearchController">
             <summary>
             Controller for searching movies
             </summary>
         </member>
-        <member name="M:SearchToolbox.REST.Controller.Movies.CRUD.SearchController.#ctor(SearchToolbox.Interfaces.IBusinessLogicLayer)">
+        <member name="M:SearchToolbox.REST.Controller.Movies.Search.SearchController.#ctor(SearchToolbox.Interfaces.IBusinessLogicLayer,Microsoft.Extensions.Logging.ILogger{SearchToolbox.REST.Controller.Movies.Search.SearchController})">
             <summary>
             Constructor for the SearchController
             </summary>
             <param name="businessLogicLayer">Class implementing the IBusinessLogicLayer interface</param>
+            <param name="logger">Class implementing ILoggeer to log queries against</param>
         </member>
-        <member name="M:SearchToolbox.REST.Controller.Movies.CRUD.SearchController.GetSearchMatches(System.String)">
+        <member name="M:SearchToolbox.REST.Controller.Movies.Search.SearchController.GetSearchMatches(System.String)">
             <summary>
             Gets the number of movies that meet the search criteria
             </summary>
             <param name="searchFor">Code part to search for</param>
             <returns>Count of the number of movies that meet the search criteria</returns>
         </member>
-        <member name="M:SearchToolbox.REST.Controller.Movies.CRUD.SearchController.GetMatchingMovies(SearchToolbox.REST.Classes.SearchCriteria)">
+        <member name="M:SearchToolbox.REST.Controller.Movies.Search.SearchController.GetMatchingMovies(SearchToolbox.REST.Classes.SearchCriteria)">
             <summary>
             Gets the next block of movies meeting the search criteria
             </summary>
@@ -147,7 +169,7 @@
             <summary>
             Configuration method for the web api. This method gets called by the runtime, and adds services to the container
             </summary>
-            <param name="services"></param>
+            <param name="serviceCollection"></param>
         </member>
         <member name="M:SearchToolbox.REST.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
             <summary>
