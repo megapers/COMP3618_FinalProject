@@ -4,7 +4,14 @@
     <input name="Code" #Code="ngModel" [readonly]="disableId" [(ngModel)]="service.formData.Code" class="form-control" required>
     <div class="validation-error" *ngIf="Code.invalid && Code.touched">This field is required</div>
   </div>
-  <button type="button" [disabled]="form.invalid" class="btn" (click)="getByCode(service.formData.Code)">Search</button>
+  <div class="form-row">
+      <div class="form-group col-md-6">
+        <button type="button" [disabled]="form.invalid" class="btn" (click)="getByCode(service.formData.Code)">Search</button>
+      </div>
+      <div class="form-group col-md-6">
+        <button type="button" [disabled]="form.invalid" class="btn" (click)="clearField(service.formData)">Clear</button>
+      </div>
+  </div>
   <div class="form-group">
     <label>Title Type</label>
     <input name="TitleType" #TitleType="ngModel" [(ngModel)]="service.formData.TitleType" class="form-control">

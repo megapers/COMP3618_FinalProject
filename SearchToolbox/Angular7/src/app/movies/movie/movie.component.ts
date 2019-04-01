@@ -81,4 +81,8 @@ export class MovieComponent implements OnInit {
       console.log(form.value, code);
     }
   }
+
+  clearField(form){
+    this.resetForm(form.value);
+  }
 }
