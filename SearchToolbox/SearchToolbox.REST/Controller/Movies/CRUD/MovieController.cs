@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using SearchToolbox.Classes;
 using SearchToolbox.Interfaces;
 using System;
@@ -14,14 +15,19 @@ namespace SearchToolbox.REST.Controller.Movies.CRUD
     public class MovieController : ControllerBase
     {
         private readonly IBusinessLogicLayer _businessLogicLayer;
+        private readonly ILogger<MovieController> _logger;
 
         /// <summary>
         /// Constructor for the MovieController
         /// </summary>
         /// <param name="businessLogicLayer">Class implementing the IBusinessLogicLayer interface</param>
-        public MovieController(IBusinessLogicLayer businessLogicLayer)
+        /// <param name="logger">Class implementing ILoggeer to log queries against</param>
+        public MovieController(
+            IBusinessLogicLayer businessLogicLayer,
+            ILogger<MovieController> logger)
         {
             _businessLogicLayer = businessLogicLayer;
+            _logger = logger;
         }
 
         /// <summary>
@@ -34,6 +40,8 @@ namespace SearchToolbox.REST.Controller.Movies.CRUD
         {
             try
             {
+                _logger.LogInformation($"api/Movies/CRUD:GetMovie: " +
+                    $"Code: {code}");
 
                 return Ok(_businessLogicLayer.ReadMovie(code));
             }
@@ -53,6 +61,9 @@ namespace SearchToolbox.REST.Controller.Movies.CRUD
         {
             try
             {
+                _logger.LogInformation($"api/Movies/CRUD:AddMovie: " +
+                    $"Movie: {movie.ToString()}");
+
                 return Ok(_businessLogicLayer.AddMovie(movie));
             }
             catch (Exception ex)
@@ -72,6 +83,10 @@ namespace SearchToolbox.REST.Controller.Movies.CRUD
         {
             try
             {
+                _logger.LogInformation($"api/Movies/CRUD:UpdateMovie: " +
+                    $"Code: {code} " +
+                    $"Movie: {movie.ToString()}");
+
                 return Ok(_businessLogicLayer.UpdateMovie(code, movie));
             }
             catch (Exception ex)
@@ -90,7 +105,10 @@ namespace SearchToolbox.REST.Controller.Movies.CRUD
         {
             try
             {
-                return Ok(_businessLogicLayer.DeleteMovie(code));
+                _logger.LogInformation($"api/Movies/CRUD:DeleteMovie: " +
+                    $"Code: {code}");
+
+                    return Ok(_businessLogicLayer.DeleteMovie(code));
             }
             catch (Exception ex)
             {
