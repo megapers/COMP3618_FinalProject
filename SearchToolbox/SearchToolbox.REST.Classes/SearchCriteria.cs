@@ -61,5 +61,15 @@ namespace SearchToolbox.REST.Classes
 
             return JsonConvert.SerializeObject(this, Formatting.None, jsonSerializerSettings);
         }
+
+        /// <summary>
+        /// Override of the 'ToString' method
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return $"Search For: {SearchFor}\nCode Grater Than: {CodeGreaterThan}\n" +
+                $"Block Size: {BlockSize}";
+        }
     }
 }
