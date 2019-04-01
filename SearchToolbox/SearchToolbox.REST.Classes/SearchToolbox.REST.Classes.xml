@@ -43,5 +43,11 @@
             </summary>
             <returns>Json string representation of class</returns>
         </member>
+        <member name="M:SearchToolbox.REST.Classes.SearchCriteria.ToString">
+            <summary>
+            Override of the 'ToString' method
+            </summary>
+            <returns></returns>
+        </member>
     </members>
 </doc>
