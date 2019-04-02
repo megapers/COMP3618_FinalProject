@@ -1,0 +1,108 @@
+﻿<Window x:Class="SearchToolbox.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SearchToolbox.WPF"
+        xmlns:vm="clr-namespace:SearchToolbox.WPF.ViewModel" 
+        mc:Ignorable="d"
+        Title="IMDB Searchbox"  Height="460" MinHeight="460" MinWidth="350" Width="350" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <!--<vm:MainVM x:Key="vm"/>-->
+        <Style x:Key="lvStyle" TargetType="{x:Type ListView}">
+            <Setter Property="VirtualizingStackPanel.IsVirtualizing" Value="True"/>
+            <Setter Property="VirtualizingStackPanel.VirtualizationMode" Value="Recycling"/>
+            <Setter Property="ScrollViewer.IsDeferredScrollingEnabled" Value="True"/>
+            <Setter Property="ListView.ItemsSource" Value="{Binding}"/>
+            <Setter Property="ListView.ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock FontSize="15" Text="{Binding OriginalTitle}"
+                                   FontWeight="Bold"/>
+                            <TextBlock FontSize="10" Foreground="DodgerBlue" Text="{Binding Code}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsLoading}" Value="True">
+                    <Setter Property="ListView.Cursor" Value="Wait"/>
+                    <Setter Property="ListView.Background" Value="LightGray"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="0,0,0,10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="70"/>
+        </Grid.ColumnDefinitions>
+
+        <Button x:Name="btnSearch"       
+                HorizontalAlignment="Center"     
+                VerticalAlignment="Center" 
+                Width="56" 
+                Height="34" Click="BtnSearch_Click" Margin="8,9" Grid.Row="1" Grid.Column="4" Background="{x:Null}">
+            <Image Source="search.png" Stretch="Uniform" />
+        </Button>
+        <TextBox x:Name="txtSearchFor" 
+                 Text="{Binding SearchFor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 BorderBrush="{StaticResource BorderColor}"  
+                 Margin="10" 
+                 Grid.Row="1" Grid.ColumnSpan="4" 
+                 />
+        <ListView x:Name="moviesList"  
+                  VirtualizingStackPanel.VirtualizationMode="Recycling"
+                  Grid.Column="0" 
+                  Grid.Row="2"
+                  Margin="10,10,10,10"   
+                  Style="{DynamicResource lvStyle}"
+                  BorderBrush="{StaticResource BorderColor}"    
+                  Background="{StaticResource BackgroundColor}" Grid.ColumnSpan="5"/>
+
+        <Label x:Name="lblResult" BorderThickness="0"              
+               Content="{Binding Message}"
+               HorizontalAlignment="Left" Margin="11,5,0,22" Grid.Row="3" Width="321" Grid.ColumnSpan="5"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="5">
+            <StackPanel.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FFEEEDED" Offset="1"/>
+                    <GradientStop Color="#FFDEDCDC" Offset="0.008"/>
+                    <GradientStop Color="White" Offset="0.536"/>
+                </LinearGradientBrush>
+            </StackPanel.Background>
+            <Button x:Name="btnEdit"  
+                VerticalAlignment="Center" 
+                Height="34" 
+                Width="50"
+                Click="BtnEdit_Click" 
+                Margin="10" BorderBrush="{x:Null}" Background="{x:Null}">
+                <Image Source="edit.png" Stretch="Uniform" />
+            </Button>
+            <Button x:Name="btnAdd"  
+                    Margin="10"
+                    VerticalAlignment="Center" 
+                    Width="50" Height="34" Click="BtnAdd_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" Background="{x:Null}"  >
+                <Image Source="add.png" Stretch="Uniform" />
+            </Button>
+            <Button x:Name="btnDelete" Margin="10"
+                    HorizontalAlignment="Right"            
+                    VerticalAlignment="Center" 
+                    Width="55" 
+                    Height="34" Click="BtnDelete_Click" BorderBrush="{x:Null}" Background="{x:Null}">
+                <Image Source="remove.png" Stretch="Uniform" />
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>
