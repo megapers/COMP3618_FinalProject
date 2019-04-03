@@ -15,7 +15,7 @@ namespace SearchToolbox.WPF
 {
     public class RESTClient
     {
-        const string _uriBase = "http://localhost:49563";
+        const string _uriBase = "http://localhost:51512";
         const string _uriCRUD = "/api/Movies/CRUD/";
         const string _uriSearch = "/api/Movies/Search/";
 
