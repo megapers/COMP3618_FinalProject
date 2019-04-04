@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { MovieService } from 'src/app/shared/movie.service';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -11,6 +11,7 @@ import { Movie } from 'src/app/shared/movie.model';
 })
 export class MovieComponent implements OnInit {
   disableId = false;
+
   constructor(private service: MovieService, private toastr: ToastrService) {}
   ngOnInit() {
     this.resetForm();
@@ -51,15 +52,15 @@ export class MovieComponent implements OnInit {
   getByCode(val) {
     this.service.getMovieByCode(val).subscribe((mov: Movie) => {
       this.service.formData = {
-      Code: mov.code,
-      TitleType: mov.titleType,
-      PrimaryTitle: mov.primaryTitle,
-      OriginalTitle: mov.originalTitle,
-      IsAdult: mov.isAdult,
-      StartYear: mov.startYear,
-      EndYear: mov.endYear,
-      RuntimeMinutes: mov.runtimeMinutes,
-      Genres: mov.genres
+        Code: mov.code,
+        TitleType: mov.titleType,
+        PrimaryTitle: mov.primaryTitle,
+        OriginalTitle: mov.originalTitle,
+        IsAdult: mov.isAdult,
+        StartYear: mov.startYear,
+        EndYear: mov.endYear,
+        RuntimeMinutes: mov.runtimeMinutes,
+        Genres: mov.genres
       };
       this.disableId = true;
     });
@@ -73,16 +74,15 @@ export class MovieComponent implements OnInit {
   }
 
   deleteRecord(form, code) {
-    if (confirm('Do you want to delete this record?')){
+    if (confirm('Do you want to delete this record?')) {
       this.service.deleteMovie(code).subscribe(res => {
         this.toastr.warning('Record deleted successfully');
         this.resetForm(form);
       }, error => this.toastr.error(error.error));
-      console.log(form.value, code);
     }
   }
 
-  clearField(form){
+  clearField(form) {
     this.resetForm(form.value);
   }
 }

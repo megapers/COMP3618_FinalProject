@@ -1,7 +1,8 @@
 <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
   <div class="form-group">
     <label>Code</label>
-    <input name="Code" #Code="ngModel" [readonly]="disableId" [(ngModel)]="service.formData.Code" class="form-control" required>
+    <input name="Code" #Code="ngModel" [readonly]="disableId"
+      [(ngModel)]="service.formData.Code" class="form-control" maxlength="9" required >
     <div class="validation-error" *ngIf="Code.invalid && Code.touched">This field is required</div>
   </div>
   <div class="form-row">

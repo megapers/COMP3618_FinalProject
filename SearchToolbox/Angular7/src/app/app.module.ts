@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { MatCardModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { MoviesComponent } from './movies/movies.component';
@@ -23,7 +25,9 @@ import { MovieService } from './shared/movie.service';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    ScrollingModule,
+    MatCardModule,
   ],
   providers: [MovieService],
   bootstrap: [AppComponent]

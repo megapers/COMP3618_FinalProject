@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Movie } from './movie.model';
+import { Criteria } from './criteria.model';
 import { HttpClient } from '@angular/common/http';
-import { stringify } from '@angular/compiler/src/util';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,7 @@ import { stringify } from '@angular/compiler/src/util';
 export class MovieService {
 
   formData: Movie;
+  searchCriteria: Criteria;
   list: Movie[];
 
   readonly rootUrl = 'http://localhost:51128/api/Movies';
@@ -19,7 +20,7 @@ export class MovieService {
     return this.http.post(this.rootUrl + '/CRUD', formData);
   }
 
-  updateMovie(code: string, formData: Movie){
+  updateMovie(code: string, formData: Movie) {
     return this.http.post(this.rootUrl + '/CRUD/' + code, formData);
   }
 
@@ -29,5 +30,17 @@ export class MovieService {
 
   deleteMovie(code: string) {
     return this.http.delete(this.rootUrl + '/CRUD/' + code);
+  }
+
+   getNumOfRecords(code: string){
+    return this.http.get(this.rootUrl + '/Search/' + code);
+  }
+
+   searchMovies(formData: Criteria) {
+    return this.http.post(this.rootUrl + '/Search', formData);
+  }
+
+  getMovies() {
+    return this.http.get(this.rootUrl + '/CRUD');
   }
 }

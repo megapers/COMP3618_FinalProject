@@ -1,3 +1,44 @@
-<p>
-  movie-list works!
-</p>
+<p>Number of records: {{number}}</p>
+<!-- <input name="records" [(ngModel)]=batchSize class="form-control" maxlength="9"> -->
+<div class="container">
+    <cdk-virtual-scroll-viewport itemSize="200" style="height: 500px" class="viewport" (scrolledIndexChange)="scrollHandler($event)">
+      <mat-card *cdkVirtualFor="let mov of service.list;
+                                let index = index;
+                                let last = last">
+                                {{setLast(last)}}
+        <mat-card-title>{{mov.code}}</mat-card-title>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+              <mat-card-content >Title Type: {{mov.titleType}}</mat-card-content>
+              <mat-card-content>Primary Title: {{mov.primaryTitle}}</mat-card-content>
+              <mat-card-content>Original Title: {{mov.originalTitle}}</mat-card-content>
+              <mat-card-content>Is Adult: {{mov.isAdult}}</mat-card-content>
+              <mat-card-content>Last?: {{last}}</mat-card-content>
+              <mat-card-content>Index: {{index}}</mat-card-content>
+            </div>
+            <div class="form-group col-md-6">
+              <mat-card-content>Start Year: {{mov.startYear}}</mat-card-content>
+              <mat-card-content>End Year: {{mov.endYear}}</mat-card-content>
+              <mat-card-content>Runtime Minutes: {{mov.runtimeMinutes}}</mat-card-content>
+              <mat-card-content>Genres: {{mov.genres}}</mat-card-content>
+          </div>
+        </div>
+      </mat-card>
+    </cdk-virtual-scroll-viewport>
+  </div>
+
+<!-- <table class="table table-hover">
+  <tr *ngFor="let mov of service.list">
+    <td>[{{mov.code}}]-{{mov.titleType}}</td>
+    <td>{{mov.primaryTitle}}</td>
+    <td>{{mov.originalTitle}}</td>
+    <td>{{mov.isAdult}}</td>
+    <td>{{mov.startYear}}</td>
+    <td>{{mov.endYear}}</td>
+    <td>{{mov.runtimeMinutes}}</td>
+    <td>{{mov.genres}}</td>
+    <td><button class="btn btn-sm btn-outline-danger">X</button></td>
+  </tr>
+</table> -->
+
+

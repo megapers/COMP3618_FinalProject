@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  align-self: center;
+}
+/*sad*/
+mat-card {
+  height: 300px;
+  margin: 2em;
+  background-color: rgb(243, 232, 232);
+  color: black;
+}
+
+img {
+  width: 20%;
+  padding-left: 1em;
+}
+
+.viewport {
+  height: 800px;
+  width: 100%;
+  background:white;
+  margin: 2em 8em 8em;
+}

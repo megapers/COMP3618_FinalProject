@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 .form-group>input{
   font-weight: bolder;
 }
@@ -34,4 +35,11 @@ div.validation-error{
   margin-top: .25rem;
   font-size: 80%;
   color: #dc3545;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+h6{
+  font-size: 80%;
 }
