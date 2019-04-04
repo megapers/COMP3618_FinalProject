@@ -9,7 +9,6 @@ namespace SearchToolbox.WPF.DataVirtualization
     /// <typeparam name="T">The type of items in the collection.</typeparam>
     public interface IItemsProvider<T>
     {
-        
         /// <summary>
         /// Fetches the total number of items available.
         /// </summary>

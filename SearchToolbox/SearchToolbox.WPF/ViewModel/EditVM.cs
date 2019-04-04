@@ -14,7 +14,6 @@ namespace SearchToolbox.WPF.ViewModel
 
         public EditVM()
         {
-
         }
 
         public EditVM(Movie movie)
@@ -25,9 +24,9 @@ namespace SearchToolbox.WPF.ViewModel
         public async Task Apply()
         {
             RESTClient client = new RESTClient();
+
             try
             {
-
                 await client.UpdateAsync((string)Movie.Code, (Movie)Movie);
                 MessageBox.Show("Done");
 
@@ -37,8 +36,6 @@ namespace SearchToolbox.WPF.ViewModel
 
                 MessageBox.Show(ex.Message);
             }
-
-
         }
     }
 }

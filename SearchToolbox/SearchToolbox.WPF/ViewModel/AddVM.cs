@@ -13,7 +13,7 @@ namespace SearchToolbox.WPF.ViewModel
     public class AddVM
     {
         public Movie Movie { get; set; }
-        
+
 
         public AddVM()
         {
@@ -28,6 +28,7 @@ namespace SearchToolbox.WPF.ViewModel
         public async Task<bool> AddAsync()
         {
             RESTClient client = new RESTClient();
+
             try
             {
                 await client.AddAsync(Movie);
@@ -40,8 +41,6 @@ namespace SearchToolbox.WPF.ViewModel
                 MessageBox.Show(ex.Message);
                 return false;
             }
-
-            
         }
     }
 

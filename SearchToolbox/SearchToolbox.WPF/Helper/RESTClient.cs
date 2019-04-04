@@ -49,7 +49,6 @@ namespace SearchToolbox.WPF
                 {
                     throw new HttpRequestException($"Updating failed.\n{response.ReasonPhrase}");
                 }
-
             }
         }
 
@@ -78,10 +77,8 @@ namespace SearchToolbox.WPF
 
         public async Task<Movie> GetAsync(string code)
         {
-
             using (HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync($"{_uriBase}{_uriCRUD}{code}"))
             {
-
                 if (response.IsSuccessStatusCode)
                 {
                     string result = response.Content.ReadAsStringAsync().Result;
@@ -96,11 +93,9 @@ namespace SearchToolbox.WPF
         }
         #endregion
 
-
         #region Search Operation
         public async Task<List<Movie>> SearchAsync(SearchCriteria searchCriteria)
         {
-
             HttpContent httpContent = new StringContent(searchCriteria.Serialize(), Encoding.UTF8, "application/json");
             string contentString = string.Empty;
             List<Movie> result = new List<Movie>();
@@ -117,8 +112,8 @@ namespace SearchToolbox.WPF
                 {
                     throw new HttpRequestException(httpResponseMessage.StatusCode.ToString(), string.IsNullOrWhiteSpace(contentString) ? null : new Exception(contentString));
                 }
-
             }
+
             return result;
         }
 
@@ -142,10 +137,7 @@ namespace SearchToolbox.WPF
             }
 
             return searchMatches;
-
         }
         #endregion
-
-
     }
 }
