@@ -1,0 +1,10 @@
+﻿<Application x:Class="SearchToolbox.WPF.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:SearchToolbox.WPF"
+             StartupUri="View/MainWindow.xaml">
+    <Application.Resources>
+        <SolidColorBrush  x:Key="BackgroundColor" Color="AliceBlue" />
+        <SolidColorBrush  x:Key="BorderColor" Color="Gray" />
+    </Application.Resources>
+</Application>
